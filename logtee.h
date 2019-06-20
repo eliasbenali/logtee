@@ -55,19 +55,19 @@ extern "C" {
 		.next = NULL,
 	};
 
-	struct _l_loglevel {
+	static struct _l_loglevel {
 		int level;
 		const char *prefix;
 	} *_loglevels;
 
-	struct _l_loglevel _builtin_levels[4] = {  // default formats reminiscent of Xorg logs...
+	static const struct _l_loglevel _builtin_levels[4] = {  // default formats reminiscent of Xorg logs...
 		{ 0, "(II): " },  /* Info    */
 		{ 1, "(WW): " },  /* Warning */
 		{ 2, "(EE): " },  /* Error   */
 		{ 3, "(FF): " },  /* Fatal   */
 	};
 
-	size_t _numlevels = 0;
+	static size_t _numlevels = 0;
 
 	// Called at each invocation of LOG() and its output prepended to the line
 	static const char * (*_prefix_callback)() = NULL;
@@ -76,10 +76,10 @@ extern "C" {
 #         define LINE_MAX               2048
 #       endif
 
-#       define LOGI(args...) LOG(0, args)
-#       define LOGW(args...) LOG(1, args)
-#       define LOGE(args...) LOG(2, args)
-#       define LOGF(args...) { LOG(3, args); exit(EXIT_FAILURE); }
+#       define LOGI(fmt,...) LOG(0, fmt, ##__VA_ARGS__)
+#       define LOGW(fmt,...) LOG(1, fmt, ##__VA_ARGS__)
+#       define LOGE(fmt,...) LOG(2, fmt, ##__VA_ARGS__)
+#       define LOGF(fmt,...) (void)(LOG(3, fmt, ##__VA_ARGS__), exit(EXIT_FAILURE))
 
 #       define PLOGI(fmt,...) LOGI(fmt ": %s\n", ##__VA_ARGS__, strerror(errno))
 #       define PLOGW(fmt,...) LOGW(fmt ": %s\n", ##__VA_ARGS__, strerror(errno))
