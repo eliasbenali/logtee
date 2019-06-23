@@ -1,10 +1,9 @@
 # C99 header-only library for extensible logging facilities.
 ## Featuring
-* Tees : multiple logging targets, anything that can be turned into a ```FILE*```
+* Tees : multiple logging targets each of which has a configurable "log level" threshold and may be a regular file, UNIX socket, pipe, character device... anything that can be masqueraded as a ```FILE*```
 * Loglevels: extensible log levels, with predefined Info, Warning, Error and Fatal (terminating) levels.
-* Priority levels: log targets are configured with a minmum level threshold
-* [```perror()```](https://pubs.opengroup.org/onlinepubs/9699919799/functions/perror.html)-like equivalents: PLOG{I,W,E,F}
-* Callback function for prefix
+* [```perror()```](https://pubs.opengroup.org/onlinepubs/9699919799/functions/perror.html)-like equivalents: PLOG{I,W,E,F} [PLOGF is 'Fatal' and thus automatically calss exit()]
+* Settable callback function for dynamic ("live") log message prefixes
 
 ## Internals
 ```
