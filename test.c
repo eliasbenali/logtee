@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <limits.h>
+
+#define  LOGTEE_UNIQUE_STATE
 #include "logtee.h"
 
 const char *cback() {

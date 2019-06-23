@@ -9,6 +9,10 @@
 ## Internals
 ```
 /**
+ * Library specifies some process-wide unique state data structures. Exactly
+ * one translation unit must define LOGTEE_UNIQUE_STATE prior to including
+ * the header.
+ *
  * Any number of log targets can be specified in a `Tee' with LOG_teepath()
  * and LOG_teefile(FILE*). Output within the Tee is unordered.
  *
@@ -19,8 +23,8 @@
  * Levels (-Infinity,+Infinity) proceded with increasing numbers denoting
  * output with higher priority.
  *
- * Predefined Info, Warning, Error and Fatal loging priorities with appropriate
- * prefixes and behavior are implemented in terms of levels.
+ * Predefined loging priorities with appropriate prefixes and behavior are
+ * implemented in terms of levels.
  *
  * Levels can be extended.
  *
